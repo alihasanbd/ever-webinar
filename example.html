@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container text-center"> 
+		<div class="col-md-6 col-md-offset-3" style="margin-top:100px">
+			<div class="panel panel-default">
+				<div class="panel-body"> 
+					<div class="col-xs-12"> 
+
+						<h2>Webinar Starts in...<br><small><b><span id="webinarCowntdownDays">0</span> days</b>, <b><span id="webinarCowntdownHours">0</span> hours</b>, <b><span id="webinarCowntdownMinutes">14</span> minutes</b> and <b><span id="webinarCowntdownSeconds">59</span> second</b></small></h2> 
+						
+						<select class="form-control" id="webinarTimeSelectionDropdown" style="margin-top:40px">
+							<option value="">Select a Schedule</option> 
+						</select>
+						 
+						
+						<br><input class="form-control" id="webinarRegistrantEmail" type="text" placeholder="Enter Your Email Here"/> 
+						
+						<br><input class="form-control" id="webinarRegistrantFName" type="text" placeholder="Enter Your First Name Here"/>
+						
+						<br><input class="form-control" id="webinarRegistrantLName" type="text" placeholder="Enter Your Last Name Here (optional)"/>  
+						
+						<br><a class="btn btn-primary btn-lg" href="#register-webinar" style="color: rgb(255, 255, 255); background-color: rgb(241, 99, 52);">YES! RESERVE MY SEAT NOW !</a>
+
+					</div> 
+				</div> 
+			</div> 
+		</div> 
+		<div class="col-xs-12" style="margin-top:100px">
+			<p>Time remaining <small><b><span id="webinarCowntdownMinutes2">14</span> minutes</b> and <b><span id="webinarCowntdownSeconds2">59</span> second</b></small></p>
+		</div> 
+	</div>
+	<script> 
+		var minElem = $('#webinarCowntdownMinutes'); 
+		var secElem = $('#webinarCowntdownSeconds'); 
+		window.EW_JitConfig = { 
+			'schedule': $('#webinarTimeSelectionDropdown'),  
+			'counter':[{
+				'minutes': minElem, 
+				'seconds': secElem, 
+				'hours': $('#webinarCowntdownHours'), 
+				'days': $('#webinarCowntdownDays'), 
+			}, {
+				'minutes': $('#webinarCowntdownMinutes2'), 
+				'seconds': $('#webinarCowntdownSeconds2') 
+			}]
+		};  
+	</script> 
+	<script src="./ewlibraries/"></script> 
+	<script> 
+	$(document).ready(function(){ 
+		$('a[href="#register-webinar"]').click(function(){  
+			EverWebinar.register( 
+				$('#webinarRegistrantEmail').val(),
+				$('#webinarRegistrantFName').val(),
+				$('#webinarRegistrantLName').val()
+			);
+		});		
+	});
+	</script>
+</body>
+</html>
