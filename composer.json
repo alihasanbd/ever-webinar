@@ -1,6 +1,17 @@
 {
+	"name": "kodeio/ever-webinar",
+	"license": "MIT", 
+    "author": {
+        "name": "Ali Hasan",
+        "email": "ali.h.bd@outlook.com"
+    },
     "require": {
         "guzzlehttp/guzzle": "^6.3",
 		"kodeio/pdo-crud": "2.5.*"
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "@php -r \"file_exists('config.php') || copy('config.php.example', 'config.php');\""
+        ]
     }
 }
