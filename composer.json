@@ -11,7 +11,7 @@
     },
     "scripts": {
         "post-root-package-install": [
-            "@php -r \"file_exists('config.php') || copy('config.php.example', 'config.php');\""
+            "@php -r \"file_exists('config.php') || copy('config.php.example', 'config.php'); unlink('config.php.example');\""
         ]
     }
 }
