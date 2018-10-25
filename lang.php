@@ -1,4 +1,5 @@
-<?php  
+<?php
+global $Language_Translation;
 
 /** Translate Day & Month in your language */
 $Language_Translation = array(

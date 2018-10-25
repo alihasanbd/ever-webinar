@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ .'/EverWebinar.php');
+require_once(__DIR__ .'/loader.php');
 
 $User_Timezone = 'Asia/Dhaka';
 $ew = new EverWebinar(

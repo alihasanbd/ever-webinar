@@ -1,6 +1,6 @@
 <?php
 header("Content-type:text/javascript");
-require_once(__DIR__ .'/EverWebinar.php');
+require_once(__DIR__ .'/loader.php');
 
 if($User_Timezone = @$_GET['tz']){
 	$ew = new EverWebinar(

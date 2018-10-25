@@ -3,8 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', TRUE);
 ini_set('display_startup_errors', TRUE);
 
-require_once(__DIR__ .'/EverWebinar.php');
-require_once(__DIR__ .'/Database.php');
+require_once(__DIR__ .'/loader.php');
 
 if(isset($_GET['ws']) && $User_Timezone = @$_GET['tz']){ 
 	if(filter_var(@$_GET['we'], FILTER_VALIDATE_EMAIL) && $fn = @$_GET['wf']){  
