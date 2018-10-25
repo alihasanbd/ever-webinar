@@ -3,6 +3,7 @@
 	{
 		this.tz = null;
 		this.url = 'SCRIPTS_BASE_URL';
+		this.lang = LANGUAGE_TRANSLATION;
 		window.EW_JitConfig.schedule.html(
 			"<option>Loading schedules ...</option>"
 		);
@@ -38,28 +39,32 @@
 		setInterval(function(){ 
 			if(0 < window.EW_JitConfig.counter.length){
 				window.EW_JitConfig.counter.forEach(function(timer){
-					self.broadcast(timer.seconds, timer.minutes, 
-					timer.hours, timer.days); 
+					timer.html(self.broadcast());
 				}); 
 			}
 		}, 500); 
 	}
 	
 	
-	Ew_Initiator.prototype.broadcast = function(sSelector, mSelector, 
-		hSelector, dSelector)
+	Ew_Initiator.prototype.broadcast = function()
 	{
-		const self = this;
-		setInterval(function(){  
-			mSelector.html(self.time.min);
-			sSelector.html(self.time.sec);
-			if(typeof hSelector != "undefined" && hSelector){
-				hSelector.html(self.time.hrs);
-			}
-			if(typeof dSelector != "undefined" && dSelector){
-				dSelector.html(self.time.day);
-			} 
-		}, 500);
+		var hour = '', day = '', 
+			html = ' <span>' + this.time.min;
+			html += ' ' + this.lang.minutes + '</span>';
+			html += ' and <span> ';
+			html += this.time.sec;
+			html += ' ' + this.lang.seconds + '</span> ';
+			
+		if(this.time.day > 0 || this.time.hrs > 0){
+			hour = ' <span>' + this.time.hrs;
+			hour += ' ' + this.lang.hours + '</span>, ';
+		}
+		if(this.time.day > 0){
+			day = ' <span>' + this.time.day;
+			day += ' ' + this.lang.days + '</span>, ';
+		}
+		
+		return day + hour + html;
 	}
 	
 	Ew_Initiator.prototype.calculate = function(jit)
@@ -91,7 +96,7 @@
 		let scheduleHtml = ""; 
 		schedule.forEach(function(sch){
 			scheduleHtml += "<option value='"+ sch.schedule 
-			+"'>"+ sch.date +" ("+ sch.timezone +")</option>"; 
+			+"'>"+ sch.date_translate +" ("+ sch.timezone +")</option>"; 
 		});
 		this.initCounter(schedule[0]);
 		window.EW_JitConfig.schedule.html(

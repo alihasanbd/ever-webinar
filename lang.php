@@ -6,7 +6,7 @@ $Language_Translation = array(
 /** Days */
 	"sunday" => "Domingo",
 	"monday" => "Segunda-feira",
-	"tuesday" => "Terça-feira",
+	"tuesday" => "Terca-feira",
 	"wednesday" => "Quarta-feira",
 	"thursday" => "Quinta-feira",
 	"friday" => "Sexta-feira",

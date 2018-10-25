@@ -58,6 +58,7 @@ class EverWebinar
 					$date = DateTime::createFromFormat(
 						'l, d M h:i A', $sch->date
 					);
+					$sch->date_translate = $this->translate($date);
 					$sch->schedule_time = $date->format('Y-m-d H:i:s');
 					$sch->user_time = $this->convert2userTime($date);
 					$sch->timezone = $this->timezone;
@@ -66,6 +67,14 @@ class EverWebinar
 			}
 		}
 		return $toReturn;
+	}
+	
+	private function translate($date)
+	{
+		return Translate($date->format('l')) .', '.
+		Translate($date->format('d')) .' '.
+		Translate($date->format('F')) .' '.
+		Translate($date->format('h:i A'));
 	}
 	
 	private function convert2userTime($date)

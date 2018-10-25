@@ -3,6 +3,11 @@
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style>
+		#webinarCowntdownTop span{
+			font-weight: bold;
+		}
+	</style>
 </head>
 <body>
 	<div class="container text-center"> 
@@ -11,7 +16,7 @@
 				<div class="panel-body"> 
 					<div class="col-xs-12"> 
 
-						<h2>Webinar Starts in...<br><small><b><span id="webinarCowntdownDays">0</span> days</b>, <b><span id="webinarCowntdownHours">0</span> hours</b>, <b><span id="webinarCowntdownMinutes">14</span> minutes</b> and <b><span id="webinarCowntdownSeconds">59</span> second</b></small></h2> 
+						<h2>Webinar Starts in...<br><small><span id="webinarCowntdownTop"><span>14 Minutos</span> and <span> 59 Segundos</span></span></small></h2> 
 						
 						<select class="form-control" id="webinarTimeSelectionDropdown" style="margin-top:40px">
 							<option value="">Select a Schedule</option> 
@@ -31,30 +36,23 @@
 			</div> 
 		</div> 
 		<div class="col-xs-12" style="margin-top:100px">
-			<p>Time remaining <small><b><span id="webinarCowntdownMinutes2">14</span> minutes</b> and <b><span id="webinarCowntdownSeconds2">59</span> second</b></small></p>
+			<p>Time remaining <small><span id="webinarCowntdownBottom"><span>14 Minutos</span> and <span> 59 Segundos</span></span></p>
 		</div> 
 	</div>
 	<script> 
-		var minElem = $('#webinarCowntdownMinutes'); 
-		var secElem = $('#webinarCowntdownSeconds'); 
 		window.EW_JitConfig = { 
 			'schedule': $('#webinarTimeSelectionDropdown'),  
-			'counter':[{
-				'minutes': minElem, 
-				'seconds': secElem, 
-				'hours': $('#webinarCowntdownHours'), 
-				'days': $('#webinarCowntdownDays'), 
-			}, {
-				'minutes': $('#webinarCowntdownMinutes2'), 
-				'seconds': $('#webinarCowntdownSeconds2') 
-			}]
+			'counter':[
+				$('#webinarCowntdownTop'),
+				$('#webinarCowntdownBottom')
+			]
 		};  
 	</script> 
 	<script src="./ewlibraries/"></script> 
 	<script> 
 	$(document).ready(function(){ 
 		$('a[href="#register-webinar"]').click(function(){  
-			EverWebinar.register( 
+			EverWebinar.register(
 				$('#webinarRegistrantEmail').val(),
 				$('#webinarRegistrantFName').val(),
 				$('#webinarRegistrantLName').val()
