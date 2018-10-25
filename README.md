@@ -12,3 +12,5 @@ Using Composer:
 ```bash
 composer create-project kodeio/ever-webinar subdir
 ```
+
+Please see `example.html` for basic uses 
