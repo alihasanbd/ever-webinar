@@ -1,6 +1,7 @@
 (function(w, d){
 	function EwTankyou(elems){
 		this.elems = elems;
+		this.lang = LANGUAGE_TRANSLATION;
 		this.time = {day:0,hrs:0,mim:0,sec:0};
 		this.initialize();
 	}
@@ -11,27 +12,33 @@
 		var time = this.param().user_time;
 		if((new Date(time) !== "Invalid Date") && !isNaN(new Date(time))){
 			this.calculate(new Date(time));
-			this.elems.forEach(function(elem){
-				self.broadcast(elem.seconds, elem.minutes, 
-				elem.hours, elem.days);
-			});
+			setInterval(function(){ 
+				self.elems.forEach(function(elem){
+					elem.html(self.broadcast());
+				});
+			}, 500);
 		}
 	}
 	
-	EwTankyou.prototype.broadcast = function(sSelector, mSelector, 
-		hSelector, dSelector)
+	EwTankyou.prototype.broadcast = function()
 	{
-		const self = this;
-		setInterval(function(){  
-			mSelector.html(self.time.min);
-			sSelector.html(self.time.sec);
-			if(typeof hSelector != "undefined" && hSelector){
-				jQuery(hSelector).html(self.time.hrs);
-			}
-			if(typeof dSelector != "undefined" && dSelector){
-				jQuery(dSelector).html(self.time.day);
-			} 
-		}, 500);
+		var hour = '', day = '', 
+			html = ' <span>' + this.time.min;
+			html += ' ' + this.lang.minutes + '</span>';
+			html += ' and <span> ';
+			html += this.time.sec;
+			html += ' ' + this.lang.seconds + '</span> ';
+			
+		if(this.time.day > 0 || this.time.hrs > 0){
+			hour = ' <span>' + this.time.hrs;
+			hour += ' ' + this.lang.hours + '</span>, ';
+		}
+		if(this.time.day > 0){
+			day = ' <span>' + this.time.day;
+			day += ' ' + this.lang.days + '</span>, ';
+		}
+		
+		return day + hour + html;
 	}
 	
 	EwTankyou.prototype.calculate = function(jit)
