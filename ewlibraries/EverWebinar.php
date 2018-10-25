@@ -56,13 +56,15 @@ class EverWebinar
 		
 		if(isset($schedule->webinar->schedules)){
 			foreach($schedule->webinar->schedules as $sch){
-				$date = DateTime::createFromFormat(
-					'l, d M h:i A', $sch->date
-				);
-				$sch->schedule_time = $date->format('Y-m-d H:i:s');
-				$sch->user_time = $this->convert2userTime($date);
-				$sch->timezone = $this->timezone;
-				$toReturn[] = $sch;
+				if($sch->schedule !== 'ir'){
+					$date = DateTime::createFromFormat(
+						'l, d M h:i A', $sch->date
+					);
+					$sch->schedule_time = $date->format('Y-m-d H:i:s');
+					$sch->user_time = $this->convert2userTime($date);
+					$sch->timezone = $this->timezone;
+					$toReturn[] = $sch;
+				}
 			}
 		}
 		return $toReturn;
