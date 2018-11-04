@@ -18,7 +18,7 @@
 
 						<h2>Webinar Starts in...<br><small><span id="webinarCowntdownTop"><span>14 Minutos</span> and <span> 59 Segundos</span></span></small></h2> 
 						
-						<select class="form-control" id="webinarTimeSelectionDropdown" style="margin-top:40px">
+						<select class="form-control webinarTimeSelectionDropdown" id="webinarTimeSelectionDropdown" style="margin-top:40px">
 							<option value="">Select a Schedule</option> 
 						</select>
 						 
@@ -38,18 +38,13 @@
 		<div class="col-xs-12" style="margin-top:100px">
 			<p>Time remaining <small><span id="webinarCowntdownBottom"><span>14 Minutos</span> and <span> 59 Segundos</span></span></p>
 		</div> 
-	</div>
-	<script> 
-		window.EW_JitConfig = { 
-			'schedule': $('#webinarTimeSelectionDropdown'),  
-			'counter':[
-				$('#webinarCowntdownTop'),
-				$('#webinarCowntdownBottom')
-			]
-		};  
-	</script> 
+	</div>  
 	<script src="./ewlibraries/"></script> 
-	<script> 
+	<script>
+	window.EW_JitConfig = {};
+	EverWebinar.schedule('#webinarTimeSelectionDropdown', [
+		'#webinarCowntdownBottom', '#webinarCowntdownTop'
+	]);
 	$(document).ready(function(){ 
 		$('a[href="#register-webinar"]').click(function(){  
 			EverWebinar.register(

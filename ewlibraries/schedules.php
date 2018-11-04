@@ -7,5 +7,5 @@ if($User_Timezone = @$_GET['tz']){
 		$Api_Key, $Webinar_Id, $Force_Timezone, $User_Timezone
 	); 
 	$sch = $ew->schedules($Maximum_Schedule); 
-	echo 'window.EW_JitConfig.Schedule_List = '. json_encode($sch);
+	echo 'window.EverWebinar_Schedule_List = '. json_encode($sch);
 }
