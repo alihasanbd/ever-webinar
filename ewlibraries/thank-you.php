@@ -1,6 +1,6 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="./thank-you-js/"></script>
+<script src="./timer/"></script>
 </head>
 <h1>Registration Successful</h1>
 <p><b>Registrant information:</b></p>
@@ -12,9 +12,7 @@
 <br><b>Time Remaining:</b> <span id="remainingtime"> ...</span> 
 
 <script>
-Ew_Countdown([
-	jQuery('#remainingtime')
-]);
+EverWebinar_Timer.init('#remainingtime');
 </script>
 <pre><?php 
 print_r($_GET);
