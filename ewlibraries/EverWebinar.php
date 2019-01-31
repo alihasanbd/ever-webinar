@@ -27,13 +27,13 @@ class EverWebinar
 		return array();
 	} 
 	
-	public function register($schedule, $email, $fn, $ln)
+	public function register($schedule, $email, $fn, $ln, $c=null, $p=null)
 	{
 		$timezone = ($t = $this->ftzone)?$t:$this->utzone;
 		$time = new DateTime('now', new DateTimeZone($timezone));
 		
 		$tz = $time->format('P');	
-		if($data = $this->callRegistrar($schedule, $tz, $email, $fn, $ln)){
+		if($data = $this->callRegistrar($schedule, $tz, $email, $fn, $ln, $c, $p)){
 			if(true == isset($data->user)){
 				return $data->user;
 			}
@@ -90,10 +90,10 @@ class EverWebinar
 		);
 	}
 	
-	private function callRegistrar($s, $tz, $email, $fn, $ln)
+	private function callRegistrar($s, $tz, $email, $fn, $ln, $c=null, $p=null)
 	{
 		$url = 'api/everwebinar/register';
-		return $this->callEverweb($url, [
+		$payload = array(
 			'api_key' => $this->token,
 			'webinar_id' => $this->webinar, 
 			'timezone' => 'GMT'. $tz,
@@ -102,7 +102,12 @@ class EverWebinar
 			'email' => $email,
 			'schedule' => $s,
 			'real_dates' => 1,
-		]);  
+		);
+		if($c != null && $p != null){
+			$payload['phone_country_code'] = $c;
+			$payload['phone'] = $p;
+		}
+		return $this->callEverweb($url, $payload);  
 	}
 	
 	private function callEverweb($url, $postData)

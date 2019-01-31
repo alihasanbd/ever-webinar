@@ -9,9 +9,13 @@ if(isset($_GET['ws']) && $User_Timezone = @$_GET['tz']){
 	if(filter_var(@$_GET['we'], FILTER_VALIDATE_EMAIL) && $fn = @$_GET['wf']){  
 		$ew = new EverWebinar(
 			$Api_Key, $Webinar_Id, $Force_Timezone, $User_Timezone
-		); 
+		);
+		
+		$phone = ($p = @$_GET['wp'])?$p:null;
+		$country = ($c = @$_GET['wc'])?$c:null;
+		
 		$data = $ew->register(
-			$_GET['ws'], $_GET['we'], $fn, @$_GET['wl']
+			$_GET['ws'], $_GET['we'], $fn, @$_GET['wl'], $country, $phone
 		);
 		
 		/* Save lead in database if configured */
