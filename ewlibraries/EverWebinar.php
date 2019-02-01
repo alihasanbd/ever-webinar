@@ -104,8 +104,10 @@ class EverWebinar
 			'real_dates' => 1,
 		);
 		if($c != null && $p != null){
-			$payload['phone_country_code'] = $c;
-			$payload['phone'] = $p;
+			if($country = Countries::country($c)){
+				$payload['phone_country_code'] = $country->code;
+				$payload['phone'] = $p;
+			}
 		}
 		return $this->callEverweb($url, $payload);  
 	}
